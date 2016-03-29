@@ -1,5 +1,45 @@
 .container {
   /*background: blue;*/
+  margin-top: 20px;
   height: 1000px;
-  width: 800px;
+  width: 1000px;
+  display: flex;
 }
+
+.header {
+  margin-bottom: 30px;
+}
+
+.social-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.social-buttons button {
+  margin: 15px;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.sub-header {
+  margin-top: 15px;
+  display: block;
+  font-size: smaller;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+
+.guide-sidebar {
+  margin-right: 20px;
+}
+
+.guide-nav {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 30%;
+}
+

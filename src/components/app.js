@@ -3,10 +3,15 @@ import ReactDOM from 'react-dom';
 import { Component } from 'react';
 import Highlight from 'react-highlight';
 import Clipboard from 'clipboard';
-
-
+import Stickyfill from 'stickyfill';
 
 class GuideWrapper extends Component {
+  componentDidMount() {
+    const nav = document.getElementsByClassName("guide-nav")[0];
+    const stickyfill = Stickyfill();
+    stickyfill.add(nav);
+  }
+
   contents() {
     const list = [];
     this.props.children.forEach((node) => {
@@ -22,11 +27,14 @@ class GuideWrapper extends Component {
   render() {
     return(
       <div className="container">
-        <ul>
-          { this.contents() }
-        </ul>
-        { this.props.children }
-        }
+        <div className="guide-sidebar">
+          <ul className="guide-nav">
+            { this.contents() }
+          </ul>
+        </div>
+        <div className="guide-content">
+          { this.props.children }
+        </div>
       </div>
     )
   }
@@ -67,11 +75,14 @@ end`
 
     return (
       <GuideWrapper>
-        <h2>Rails - Action Mailer <span className="sub-header">Setup Welcome Email</span></h2>
+        <div className="header">
+          <h2>Creating Mailers in Rails <span className="sub-header">quick guide to the basics of using Rails Action Mailer</span></h2>
+        </div>
+
         <h4 id="generate-mailer">1. Generate New Mailer</h4>
-        <a href="#" className="copy-button" data-clipboard-target="#gen-mailer">
+        <button className="copy-button" data-clipboard-target="#gen-mailer">
           Copy Snippet
-        </a>
+        </button>
         <div id="gen-mailer">
           <Highlight className="ruby">
             {`rails g mailer UserMailer`}
@@ -85,18 +96,18 @@ end`
         <h4 id="update-mailer">2. Update New Mailer</h4>
         <p>Add the default from and email method to new mailer class.</p>
         <h5>Add the default from</h5>
-        <a href="#" className="copy-button" data-clipboard-target="#default-from">
+        <button className="copy-button" data-clipboard-target="#default-from">
           Copy Snippet
-        </a>
+        </button>
         <div id="default-from">
           <Highlight className="ruby">
             { `default from: 'notifications@example.com'` }
           </Highlight>
         </div>
         <h5>Add method for sending welcome emails</h5>
-        <a href="#" className="copy-button" data-clipboard-target="#welcome-method">
+        <button className="copy-button" data-clipboard-target="#welcome-method">
           Copy Snippet
-        </a>
+        </button>
         <div id="welcome-method">
           <Highlight className="ruby">
             { this.welcomeEmail() }
